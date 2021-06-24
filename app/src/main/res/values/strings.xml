@@ -1,0 +1,27 @@
+<resources>
+    <string name="welcome">Добро Пожаловать</string>
+    <string name="app_name">hospitalFinalProjectClient</string>
+    <string name="login">Логин</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="Register">Зарегистрироваться</string>
+    <string name="Сhoose_your_login_option">Выберите вариант входа в систему</string>
+    <string name="Sick">Пациент</string>
+    <string name="Staff">Персонал</string>
+    <string name="Enter_first_name">Напишите ваше имя</string>
+    <string name="First_name">Имя</string>
+    <string name="Enter_last_name">Напишите вашу фамилию</string>
+    <string name="Last_name">Фамилия</string>
+    <string name="Enter_time_visit">Напишите время посещения</string>
+    <string name="Time_visit">Время посещения</string>
+    <string name="Enter_profession">Напишите вашу профессию</string>
+    <string name="Profession">Профессия</string>
+    <string name="Continue">Продолжить</string>
+    <string name="Enter_your_details">Введите ваши данные</string>
+    <string name="Open_menu">Откройте меню</string>
+    <string name="Work_this_comfort">Работайте с комфортом!</string>
+    <string name="Delete_a_sick">Удалить пациента</string>
+    <string name="Info_about_sicks">Информация о пациентах</string>
+    <string name="Sign_up">Ввойти</string>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityClasses.SickRegisterActivity">
+
+    <TextView
+        android:id="@+id/tvSickWelcome"
+        android:layout_width="254dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/Enter_your_details"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/etMassageSickFirst_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/Enter_first_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tvSickWelcome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvSickWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/tvSickWelcome"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/etMassageSickLast_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/Enter_last_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etMassageSickFirst_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etMassageSickFirst_name"
+        app:layout_constraintTop_toBottomOf="@+id/etMassageSickFirst_name"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btnSickRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background_sick"
+        android:text="@string/Continue"
+        app:layout_constraintEnd_toEndOf="@+id/etMassageSickLast_name"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/etMassageSickLast_name"
+        app:layout_constraintTop_toBottomOf="@+id/etMassageSickLast_name" />
+
+    <ImageView
+        android:id="@+id/ivSickFirstName"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/first_name_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/etMassageSickFirst_name"
+        app:layout_constraintEnd_toStartOf="@+id/etMassageSickFirst_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSickListName"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/last_name_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/etMassageSickLast_name"
+        app:layout_constraintEnd_toStartOf="@+id/etMassageSickLast_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ActivityClasses.StaffRegisterActivity">
+
+    <TextView
+        android:id="@+id/tvStaffWelcome"
+        android:layout_width="254dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/Enter_your_details"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStaffFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/First_name"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/viewFirstNameDriver"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/ivStaffFirstName"
+        app:layout_constraintTop_toBottomOf="@id/tvStaffWelcome" />
+
+    <EditText
+        android:id="@+id/etStaffFirst_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/Enter_first_name"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint"
+        app:layout_constraintEnd_toEndOf="@+id/tvStaffWelcome"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/tvStaffWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/tvStaffWelcome"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/tvStaffLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/Last_name"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/viewLastNameDriver"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/ivStaffListName"
+        app:layout_constraintTop_toBottomOf="@id/tvStaffWelcome" />
+
+    <EditText
+        android:id="@+id/etStaffLast_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/Enter_last_name"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint"
+        app:layout_constraintEnd_toEndOf="@+id/etStaffFirst_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etStaffFirst_name"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffFirst_name"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/tvStaffProfession"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="168dp"
+        android:text="@string/Profession"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/viewProfessionDriver"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/ivStaffProfession"
+        app:layout_constraintTop_toBottomOf="@id/tvStaffWelcome" />
+
+    <EditText
+        android:id="@+id/etStaffProfession"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/Enter_profession"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint"
+        app:layout_constraintEnd_toEndOf="@+id/etStaffLast_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etStaffLast_name"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffLast_name"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background_staff"
+        android:text="@string/Register"
+        app:layout_constraintEnd_toEndOf="@+id/etStaffProfession"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/etStaffProfession"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffProfession" />
+
+    <View
+        android:id="@+id/viewFirstNameDriver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTextHint"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffFirst_name" />
+
+    <View
+        android:id="@+id/viewLastNameDriver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTextHint"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffLast_name" />
+
+    <View
+        android:id="@+id/viewProfessionDriver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTextHint"
+        app:layout_constraintTop_toBottomOf="@+id/etStaffProfession" />
+
+    <ImageView
+        android:id="@+id/ivStaffFirstName"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/first_name_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/etStaffFirst_name"
+        app:layout_constraintEnd_toStartOf="@+id/etStaffFirst_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivStaffListName"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/last_name_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/etStaffLast_name"
+        app:layout_constraintEnd_toStartOf="@+id/etStaffLast_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivStaffProfession"
+        android:layout_width="50dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/profession_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/etStaffProfession"
+        app:layout_constraintEnd_toStartOf="@+id/etStaffProfession"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

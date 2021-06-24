@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ActivityClasses.CheckStaffActivity">
+
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/login"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/viewLoginDriver"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/ivLogin"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+    <EditText
+        android:id="@+id/etLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:hint="@string/enter_login"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorTextHint"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tvLogin"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/tvLogin"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/password"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/viewLoginDriver"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/ivLogin"
+        app:layout_constraintTop_toBottomOf="@id/viewLoginDriver" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/enter_password"
+        android:textColorHint="@color/colorTextHint"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/etLogin"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/etLogin"
+        app:layout_constraintTop_toBottomOf="@+id/etLogin"
+        tools:ignore="TextFields"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/btnStaffRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background_staff"
+        android:text="@string/Register"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background_staff"
+        android:text="@string/Sign_up"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btnStaffRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnStaffRegister"
+        app:layout_constraintTop_toBottomOf="@+id/btnStaffRegister" />
+    <View
+        android:id="@+id/viewLoginDriver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTextHint"
+        app:layout_constraintTop_toBottomOf="@+id/etLogin" />
+
+    <View
+        android:id="@+id/viewPasswordDriver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTextHint"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <ImageView
+        android:id="@+id/ivLogin"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/login_icon"
+        app:layout_constraintBottom_toTopOf="@id/viewLoginDriver"
+        app:layout_constraintStart_toStartOf="@id/viewLoginDriver"
+        app:layout_constraintTop_toTopOf="@id/etLogin"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivPassword"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/password_icon"
+        app:layout_constraintBottom_toTopOf="@id/viewPasswordDriver"
+        app:layout_constraintStart_toStartOf="@id/viewLoginDriver"
+        app:layout_constraintTop_toTopOf="@id/etPassword"
+        app:tint="@color/white"
+        android:layout_marginLeft="8dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
