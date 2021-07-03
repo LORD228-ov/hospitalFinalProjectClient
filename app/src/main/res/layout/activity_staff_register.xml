@@ -125,6 +125,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/button_background_staff"
         android:text="@string/Register"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/etStaffProfession"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/etStaffProfession"
@@ -186,4 +187,27 @@
         app:layout_constraintBottom_toBottomOf="@+id/etStaffProfession"
         app:layout_constraintEnd_toStartOf="@+id/etStaffProfession"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbConnectStaffRegister"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnReconnectStaffRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Reconnect"
+        android:background="@drawable/button_background_staff"
+        app:layout_constraintEnd_toEndOf="@+id/etStaffProfession"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="@+id/etStaffProfession"
+        app:layout_constraintTop_toTopOf="@+id/viewProfessionDriver" />
 </androidx.constraintlayout.widget.ConstraintLayout>

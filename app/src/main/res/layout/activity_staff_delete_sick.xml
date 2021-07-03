@@ -6,6 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ActivityClasses.StaffDeleteSickActivity">
 
+    <Button
+        android:id="@+id/btnBackStaffDeleteSick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background_staff"
+        android:text="@string/Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnReconnectStaffDeleteSick"
+        app:layout_constraintStart_toStartOf="@+id/btnReconnectStaffDeleteSick" />
+
+    <Button
+        android:id="@+id/btnReconnectStaffDeleteSick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background_staff"
+        android:text="@string/Reconnect"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackStaffDeleteSick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbConnectStaffDeleteSick"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/lvSicksForDeletion"
         android:layout_width="match_parent"

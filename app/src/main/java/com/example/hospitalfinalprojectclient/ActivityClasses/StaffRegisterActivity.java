@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hospitalfinalprojectclient.MyRequestCode;
@@ -17,12 +18,14 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class StaffRegisterActivity extends AppCompatActivity {
     private EditText etStaffFirst_name, etStaffLast_name, etStaffProfession;
-    private Button btnRegister;
+    private Button btnRegister, btnReconnectStaffRegister;
+    private ProgressBar pbConnectStaffRegister;
 
     private Gson gson;
     private Socket socket;
@@ -42,25 +45,33 @@ public class StaffRegisterActivity extends AppCompatActivity {
         etStaffLast_name = findViewById(R.id.etStaffLast_name);
         etStaffProfession = findViewById(R.id.etStaffProfession);
         btnRegister = findViewById(R.id.btnRegister);
-
+        pbConnectStaffRegister = findViewById(R.id.pbConnectStaffRegister);
+        btnReconnectStaffRegister = findViewById(R.id.btnReconnectStaffRegister);
     }
 
     private void initListener() {
         btnRegister.setOnClickListener(this::register);
+        btnReconnectStaffRegister.setOnClickListener(v -> {
+            connect();
+        });
     }
 
     public void connect() {
-
+        pbConnectStaffRegister.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
-                socket = new Socket("192.168.0.103", 8888);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress("192.168.0.103", 8888), 5000);
                 writer = new PrintWriter(socket.getOutputStream());
                 runOnUiThread(() -> {
+                    btnReconnectStaffRegister.setVisibility(View.INVISIBLE);
+                    btnRegister.setVisibility(View.VISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            runOnUiThread(()-> pbConnectStaffRegister.setVisibility(View.INVISIBLE));
         }).start();
         gson = new Gson();
     }

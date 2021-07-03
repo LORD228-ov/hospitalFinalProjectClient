@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hospitalfinalprojectclient.MyRequestCode;
@@ -20,6 +22,7 @@ import org.naishadhparmar.zcustomcalendar.Property;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,6 +32,8 @@ import java.util.Scanner;
 
 public class CustomCalendarActivity extends AppCompatActivity {
     CustomCalendar customCalendar;
+    private Button btnReconnectCustomCalendar;
+    private ProgressBar pbConnectCustomCalendar;
     private Gson gson;
     private Socket socket;
     private PrintWriter writer;
@@ -40,33 +45,48 @@ public class CustomCalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_calendar);
-
+        initView();
+        initListener();
         connect();
     }
 
     public void connect() {
-
+        pbConnectCustomCalendar.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
-                socket = new Socket("192.168.0.103", 8888);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress("192.168.0.103", 8888), 5000);
                 writer = new PrintWriter(socket.getOutputStream());
                 scanner = new Scanner(socket.getInputStream());
                 runOnUiThread(() -> {
+                    btnReconnectCustomCalendar.setVisibility(View.INVISIBLE);
+                    customCalendar.setVisibility(View.VISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            runOnUiThread(()-> pbConnectCustomCalendar.setVisibility(View.INVISIBLE));
         }).start();
         gson = new Gson();
         initCustomCalendar();
         getSicks();
     }
 
+    private void initView() {
+        pbConnectCustomCalendar = findViewById(R.id.pbConnectCustomCalendar);
+        btnReconnectCustomCalendar = findViewById(R.id.btnReconnectCustomCalendar);
+        customCalendar = findViewById(R.id.custom_calendar);
+    }
+
+    private void initListener() {
+        btnReconnectCustomCalendar.setOnClickListener(v -> {
+            connect();
+        });
+    }
+
 
     private void initCustomCalendar() {
-        customCalendar = findViewById(R.id.custom_calendar);
-
         HashMap<Object, Property> descHashMap = new HashMap<>();
 
         Property defaultProperty = new Property();
@@ -130,6 +150,7 @@ public class CustomCalendarActivity extends AppCompatActivity {
         dateHashMap.put(28, "present");
         dateHashMap.put(29, "absent");
         dateHashMap.put(30, "present");
+        dateHashMap.put(31, "absent");
 
         customCalendar.setDate(calendar, dateHashMap);
 

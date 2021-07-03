@@ -28,7 +28,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="26dp"
         android:text="@string/login"
         android:textAllCaps="true"
@@ -60,7 +59,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="14dp"
         android:text="@string/password"
         android:textAllCaps="true"
@@ -98,6 +96,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/etPassword"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/etPassword"
@@ -113,6 +112,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/btnStaffRegister"
         app:layout_constraintStart_toStartOf="@+id/btnStaffRegister"
         app:layout_constraintTop_toBottomOf="@+id/btnStaffRegister" />
@@ -139,7 +139,6 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/login_icon"
         app:layout_constraintBottom_toTopOf="@id/viewLoginDriver"
@@ -157,6 +156,28 @@
         app:layout_constraintBottom_toTopOf="@id/viewPasswordDriver"
         app:layout_constraintStart_toStartOf="@id/viewLoginDriver"
         app:layout_constraintTop_toTopOf="@id/etPassword"
-        app:tint="@color/white"
-        android:layout_marginLeft="8dp" />
+        app:tint="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/pbConnectCheckStaff"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnReconnectCheckStaff"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Reconnect"
+        android:background="@drawable/button_background_staff"
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

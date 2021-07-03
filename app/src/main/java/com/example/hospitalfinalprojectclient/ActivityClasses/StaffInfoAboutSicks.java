@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hospitalfinalprojectclient.MyRequestCode;
@@ -20,12 +22,15 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class StaffInfoAboutSicks extends AppCompatActivity {
+    private ProgressBar pbConnectStaffInfoAboutSicks;
+    private Button btnReconnectStaffInfoAboutSicks, btnBackStaffInfoAboutSicks;
     private ListView lvSicksInfo;
     private ArrayAdapter<Sick> adapter;
     private ArrayList<Sick> sicks;
@@ -42,41 +47,55 @@ public class StaffInfoAboutSicks extends AppCompatActivity {
         setContentView(R.layout.activity_staff_info_about_sicks);
 
         init();
+        initListener();
         connect();
     }
 
     public void connect() {
-
+        pbConnectStaffInfoAboutSicks.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
-                socket = new Socket("192.168.0.103", 8888);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress("192.168.0.103", 8888), 5000);
                 writer = new PrintWriter(socket.getOutputStream());
                 scanner = new Scanner(socket.getInputStream());
                 runOnUiThread(() -> {
+                    btnReconnectStaffInfoAboutSicks.setVisibility(View.INVISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
                 getSicksWhoRecordedToYou();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            runOnUiThread(()-> pbConnectStaffInfoAboutSicks.setVisibility(View.INVISIBLE));
         }).start();
+        gson = new Gson();
+        jsonStaff = gson.toJson(staff);
     }
 
     private void init() {
         Intent derivableIntent = getIntent();
         staff = (Staff) derivableIntent.getSerializableExtra(MyRequestCode.KEY_INTENT);
+        pbConnectStaffInfoAboutSicks = findViewById(R.id.pbConnectStaffInfoAboutSicks);
+        btnReconnectStaffInfoAboutSicks = findViewById(R.id.btnReconnectStaffInfoAboutSicks);
+        btnBackStaffInfoAboutSicks = findViewById(R.id.btnBackStaffInfoAboutSicks);
         lvSicksInfo = findViewById(R.id.lvSicksInfo);
 
         lvSicksInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), StaffWorkActivity.class);
-                intent.putExtra(MyRequestCode.KEY_INTENT, staff);
-                startActivity(intent);
+                back();
             }
         });
-        gson = new Gson();
-        jsonStaff = gson.toJson(staff);
+    }
+
+    private void initListener() {
+        btnReconnectStaffInfoAboutSicks.setOnClickListener(v -> {
+            connect();
+        });
+        btnBackStaffInfoAboutSicks.setOnClickListener(v -> {
+            back();
+        });
     }
 
     public void getSicksWhoRecordedToYou() {
@@ -95,5 +114,11 @@ public class StaffInfoAboutSicks extends AppCompatActivity {
                 });
             }
         }).start();
+    }
+
+    private void back() {
+        Intent intent = new Intent(getApplicationContext(), StaffWorkActivity.class);
+        intent.putExtra(MyRequestCode.KEY_INTENT, staff);
+        startActivity(intent);
     }
 }

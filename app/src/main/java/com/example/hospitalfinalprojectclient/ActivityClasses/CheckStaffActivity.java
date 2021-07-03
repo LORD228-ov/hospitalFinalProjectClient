@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hospitalfinalprojectclient.CheckRegistration;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +25,8 @@ import java.util.Scanner;
 
 public class CheckStaffActivity extends AppCompatActivity {
     private EditText etLogin, etPassword;
-    private Button btnStaffRegister, btnSignUp;
+    private Button btnStaffRegister, btnSignUp, btnReconnectCheckStaff;
+    private ProgressBar pbConnectCheckStaff;
 
     private Gson gson;
     private Socket socket;
@@ -40,18 +43,23 @@ public class CheckStaffActivity extends AppCompatActivity {
     }
 
     public void connect() {
-
+        pbConnectCheckStaff.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
-                socket = new Socket("192.168.0.103", 8888);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress("192.168.0.103", 8888), 5000);
                 writer = new PrintWriter(socket.getOutputStream());
                 scanner = new Scanner(socket.getInputStream());
                 runOnUiThread(() -> {
+                    btnReconnectCheckStaff.setVisibility(View.INVISIBLE);
+                        btnSignUp.setVisibility(View.VISIBLE);
+                        btnStaffRegister.setVisibility(View.VISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            runOnUiThread(()-> pbConnectCheckStaff.setVisibility(View.INVISIBLE));
         }).start();
         gson = new Gson();
     }
@@ -61,12 +69,17 @@ public class CheckStaffActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnStaffRegister = findViewById(R.id.btnStaffRegister);
         btnSignUp = findViewById(R.id.btnSignUp);
+        pbConnectCheckStaff = findViewById(R.id.pbConnectCheckStaff);
+        btnReconnectCheckStaff = findViewById(R.id.btnReconnectCheckStaff);
 
     }
 
     private void initListener() {
         btnStaffRegister.setOnClickListener(this::register);
         btnSignUp.setOnClickListener(this::signUp);
+        btnReconnectCheckStaff.setOnClickListener(v -> {
+            connect();
+        });
     }
 
     private void register(View view) {

@@ -24,4 +24,6 @@
     <string name="Delete_a_sick">Удалить пациента</string>
     <string name="Info_about_sicks">Информация о пациентах</string>
     <string name="Sign_up">Ввойти</string>
+    <string name="Back">Назад</string>
+    <string name="Reconnect">Переподключиться</string>
 </resources>

@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hospitalfinalprojectclient.MyRequestCode;
@@ -21,12 +23,15 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class SickListRegisterActivity extends AppCompatActivity {
+    private Button btnReconnectSickListRegister;
+    private ProgressBar pbConnectSickListRegister;
     private ListView lvStaffsForRegister;
     private ArrayAdapter<Staff> adapter;
     private ArrayList<Staff> staffs;
@@ -40,27 +45,34 @@ public class SickListRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sick_list_register);
         init();
+        initListener();
         connect();
     }
 
     public void connect() {
-
+        pbConnectSickListRegister.setVisibility(View.VISIBLE);
         new Thread(() -> {
             try {
-                socket = new Socket("192.168.0.103", 8888);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress("192.168.0.103", 8888), 5000);
                 writer = new PrintWriter(socket.getOutputStream());
                 scanner = new Scanner(socket.getInputStream());
                 runOnUiThread(() -> {
+                    btnReconnectSickListRegister.setVisibility(View.INVISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
                 getStaffs();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            runOnUiThread(()-> pbConnectSickListRegister.setVisibility(View.INVISIBLE));
         }).start();
+        gson = new Gson();
     }
 
     private void init() {
+        btnReconnectSickListRegister = findViewById(R.id.btnReconnectSickListRegister);
+        pbConnectSickListRegister = findViewById(R.id.pbConnectSickListRegister);
         lvStaffsForRegister = findViewById(R.id.lvStaffsForRegister);
 
         lvStaffsForRegister.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,7 +93,11 @@ public class SickListRegisterActivity extends AppCompatActivity {
             }
         });
 
-        gson = new Gson();
+    }
+    private void initListener() {
+        btnReconnectSickListRegister.setOnClickListener(v -> {
+            connect();
+        });
     }
 
     public void getStaffs() {
