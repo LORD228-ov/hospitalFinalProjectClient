@@ -2,8 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/alertDialog"
-        android:title="Show a dialog" />
+        android:title="@string/Show_a_dialog" />
     <item
         android:id="@+id/exit"
-        android:title="exit" />
+        android:visible="false"
+        android:title="@string/exit" />
 </menu>

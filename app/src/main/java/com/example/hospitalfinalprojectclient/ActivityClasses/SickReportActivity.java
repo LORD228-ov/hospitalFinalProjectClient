@@ -33,7 +33,7 @@ public class SickReportActivity extends AppCompatActivity {
 
     private Sick sick;
 
-    private MenuItem exitItem;
+    private Menu menu_exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SickReportActivity extends AppCompatActivity {
         Intent intent = getIntent();
         sick = (Sick) intent.getSerializableExtra(MyRequestCode.KEY_INTENT);
 
-//        exitItem.setVisible(false);
+
 
         initView();
         initListener();
@@ -60,7 +60,6 @@ public class SickReportActivity extends AppCompatActivity {
                 writer = new PrintWriter(socket.getOutputStream());
                 scanner = new Scanner(socket.getInputStream());
                 runOnUiThread(() -> {
-//                    exitItem.setVisible(true);
                     btnReconnectSickReport.setVisibility(View.INVISIBLE);
                     Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
                 });
@@ -74,7 +73,6 @@ public class SickReportActivity extends AppCompatActivity {
     private void initView() {
         pbConnectSickReport = findViewById(R.id.pbConnectSickReport);
         btnReconnectSickReport = findViewById(R.id.btnReconnectSickReport);
-        exitItem = findViewById(R.id.exit);
     }
 
     private void initListener() {
@@ -109,6 +107,7 @@ public class SickReportActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.alert_dialog, menu);
+        menu_exit = menu;
         return true;
     }
 
@@ -118,6 +117,8 @@ public class SickReportActivity extends AppCompatActivity {
         switch(id){
             case R.id.alertDialog:
                 showDialog();
+                menu_exit.findItem(R.id.exit)
+                        .setVisible(true);
                 return true;
             case R.id.exit:
                 deleteSick(sick);

@@ -25,5 +25,7 @@
     <string name="Info_about_sicks">Информация о пациентах</string>
     <string name="Sign_up">Ввойти</string>
     <string name="Back">Назад</string>
+    <string name="Show_a_dialog">Показать диалог</string>
+    <string name="exit">Выйти</string>
     <string name="Reconnect">Переподключиться</string>
 </resources>
