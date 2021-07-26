@@ -84,7 +84,6 @@ public class SickReportActivity extends AppCompatActivity {
     private void showDialog() {
         CustomDialogFragment dialog = new CustomDialogFragment(sick);
         dialog.show(getSupportFragmentManager(), "custom");
-//        dialog.createDialog(sick);
     }
 
     public void deleteSick(Sick sick) {
@@ -108,6 +107,8 @@ public class SickReportActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.alert_dialog, menu);
         menu_exit = menu;
+        menu_exit.findItem(R.id.exit)
+                .setVisible(true);
         return true;
     }
 
@@ -117,8 +118,6 @@ public class SickReportActivity extends AppCompatActivity {
         switch(id){
             case R.id.alertDialog:
                 showDialog();
-                menu_exit.findItem(R.id.exit)
-                        .setVisible(true);
                 return true;
             case R.id.exit:
                 deleteSick(sick);
